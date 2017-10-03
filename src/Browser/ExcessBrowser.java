@@ -4,19 +4,19 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import java.io.*;
 public class ExcessBrowser {
 	
-	String URL;
+	String URL[];
 	//public static String DriverPath= "C:\\Users\\sooraj\\workspace\\WebsiteDownloader\\ChromeDriver\\chromedriver.exe" ;
 	public static String DriverPathIE= "\\Users\\css109558\\workspace\\WebsiteDownloader\\src\\Browser\\IE\\IEDriverServer.exe" ;
 	public static WebDriver driver;
 	
-	public String GetURL() 
+	public String[] GetURL() 
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				System.out.println("Enter URL");
-				System.out.println("Enter 'stop' to quit.");
+				System.out.println("Enter 'q' to quit.");
 				try{
-					//do {
-				URL = br.readLine();
+					for(int i=0;i<10 || URL[i]!="q";i++ )
+				URL[i] = br.readLine();
 				//} while(!URL.equals("q"));
 					
 				   }
@@ -26,27 +26,15 @@ public class ExcessBrowser {
 				}
 				System.out.println(URL);
 				return URL;
-				
 	}
 
-	/*public void StartChrome(String MyURL)
-	{
-		try{System.out.println("Launching chrome Browser");
-		System.setProperty("webdriver.chrome.driver",DriverPath);
-		driver = new ChromeDriver();
-		driver.navigate().to(MyURL);
-		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-		}
-	}*/
-	public void StartIE(String MyURL)
+	public void StartIE(String[] MyURL)
 	{
 		try{System.out.println("Launching InternetExplorer");
 		System.setProperty("webdriver.ie.driver",DriverPathIE);
 		driver = new InternetExplorerDriver();
-		driver.navigate().to(MyURL);
+		for(int i=0;i<MyURL.length;i++)
+			driver.navigate().to(MyURL[i]);
 		}
 		catch(Exception e)
 		{
